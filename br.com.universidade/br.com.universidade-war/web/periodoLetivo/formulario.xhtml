@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<ui:fragment xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+             xmlns:p="http://primefaces.org/ui"
+             xmlns:h="http://java.sun.com/jsf/html">
+
+    <h:form id="formCadastro">
+        <br/>
+        <p:panel  id="painelCadastro">
+            
+            <p:growl/>
+            
+            <h:inputHidden value="#{periodoLetivoManagedBean.periodoLetivo.idPeriodoLetivo}"/>
+            
+            <h:panelGrid columns="6" cellpadding="5">
+                
+                <h:outputLabel value="Período Letivo:*"/>
+                <p:inputText value="#{periodoLetivoManagedBean.periodoLetivo.descricao}"/>
+                
+                <h:outputLabel value="Data Inicio:*" /> 
+                <p:calendar locale="pt_BR" navigator="true" pattern="dd/MM/yyyy" 
+                            value="#{periodoLetivoManagedBean.periodoLetivo.dataInicio}"/>
+                
+                <h:outputLabel value="Data Fim:*" /> 
+                <p:calendar locale="pt_BR" navigator="true" pattern="dd/MM/yyyy"
+                            value="#{periodoLetivoManagedBean.periodoLetivo.dataFim}"/>
+                
+                <p:commandButton value="Salvar" icon="ui-icon-disk"
+                                 actionListener="#{periodoLetivoManagedBean.salvar()}"
+                                 update="painelCadastro,:formTabela:tabela"/>
+                
+                 <p:commandButton value="Novo" icon="ui-icon-plus"
+                                  actionListener="#{periodoLetivoManagedBean.novo()}"
+                                 update="painelCadastro"/>
+                
+            </h:panelGrid>
+            
+        </p:panel>
+        <br/>
+    </h:form>
+</ui:fragment>

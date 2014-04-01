@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <style type="text/css">
+            .ui-layout-north{
+                z-index: 20 !important;
+                overflow: visible !important;
+            }
+            .ui-layout-north .ui-layout-unit-content{
+                overflow: visible !important;
+            }
+
+        </style>
+        
+        <title>
+            
+            <ui:insert name="titulo">
+                
+            </ui:insert>
+            
+        </title>
+        
+        <ui:insert name="favicon">
+            
+        </ui:insert>
+               
+    </h:head>
+    <h:body>
+        
+        <p:layout fullPage="true">
+            
+            <p:layoutUnit position="north" size="130">
+                
+                <h:outputLink value="#{request.contextPath}/index.html">
+                    
+                    <h:graphicImage value="/imagens/java_ee.png" />
+                    
+                </h:outputLink>
+                
+                <h:form>
+                    
+                    <p:menubar >
+                        
+                        <p:submenu label="Cadastro">
+                            
+                            <p:menuitem value="Aluno" url="/aluno/index.html"/>
+                            <p:menuitem value="Professor" url="#"/>
+                            <p:menuitem value="Situação Matrícula" url="/situacaoMatricula/index.html"/>
+                                                        
+                        </p:submenu>
+                        
+                        <p:menuitem value="Matrícula" url="#"/>
+                        
+                        <p:submenu label="Turma">
+                            
+                            <p:menuitem value="Curso" url="#"/>
+                            <p:menuitem value="Materia" url="#"/>
+                            <p:menuitem value="Periodo Letivo" url="/periodoLetivo/index.html"/>
+                            
+                        </p:submenu>
+                        
+                    </p:menubar>
+                    
+                </h:form>
+
+            </p:layoutUnit>
+            
+            <p:layoutUnit position="center">
+                
+                <ui:insert name="conteudo">
+                    
+                </ui:insert>
+                
+            </p:layoutUnit>
+            
+            <p:layoutUnit position="south" size="70">
+                Rodape
+            </p:layoutUnit>
+            
+        </p:layout>
+        
+        
+    </h:body>
+</html>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<ui:fragment xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    
+    <h:form id="formTabela">
+        
+        <p:contextMenu for="tabela">
+            
+            <p:menuitem value="Excluir" icon="ui-icon-close"
+                        actionListener="#{periodoLetivoManagedBean.excluir()}"
+                        update="periodoLetivo"/> 
+            
+            <p:menuitem value="Alterar" icon="ui-icon-pencil"
+                        actionListener="#{periodoLetivoManagedBean.atualizar()}"
+                        update=":formCadastro:painelCadastro"/>
+            
+        </p:contextMenu>
+        
+        <p:fieldset legend="Períodos Letivos" toggleable="true" toggleSpeed="400">
+            
+            <p:panel  id="periodoLetivo">
+                
+                <p:growl/>
+                
+                <p:dataTable emptyMessage="Nenhum Periodo Letivo Cadastrado" 
+                             paginator="true" rows="10" var="periodoLetivo" 
+                             value="#{periodoLetivoManagedBean.todos()}" id="tabela"
+                             rowKey="#{periodoLetivo.idPeriodoLetivo}"
+                             selection="#{periodoLetivoManagedBean.periodoLetivoSelecionado}"
+                             selectionMode="single" >
+                    
+                    <p:column style="width: 10%" headerText="Código" >
+                        #{periodoLetivo.idPeriodoLetivo}
+                    </p:column> 
+                    
+                    <p:column style="width: 50%" headerText="Periodo Letivo" >
+                        #{periodoLetivo.descricao}
+                    </p:column>
+                    
+                    <p:column style="width: 20%" headerText="Data Inicio">
+                        
+                        <h:outputText value="#{periodoLetivo.dataInicio}">
+                            <f:convertDateTime type="date" pattern="dd/MM/yyyy"/>
+                        </h:outputText>
+                        
+                    </p:column>
+                    
+                    <p:column style="width: 20%" headerText="Data Fim">
+                        
+                        <h:outputText value="#{periodoLetivo.dataFim}">
+                            <f:convertDateTime type="date" pattern="dd/MM/yyyy"/>
+                        </h:outputText>
+                        
+                    </p:column> 
+                    
+                </p:dataTable>            
+            </p:panel>
+        </p:fieldset>  
+    </h:form>    
+</ui:fragment>
