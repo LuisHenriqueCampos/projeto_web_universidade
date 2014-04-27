@@ -3,6 +3,7 @@ package br.com.universidade.aplicacao;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "periodoletivo")
@@ -14,6 +15,7 @@ public class PeriodoLetivo {
     private Short idPeriodoLetivo;
     
     @Column(name = "descricao", nullable = false, length = 45)
+    @NotNull
     private String descricao;
     
     @Column(name = "dataInicio", nullable = false)
@@ -57,6 +59,7 @@ public class PeriodoLetivo {
 
     public void setDataFim(Date dataFim) {
         this.dataFim = dataFim;
+        
     }   
 
     public List<Turma> getTurmas() {

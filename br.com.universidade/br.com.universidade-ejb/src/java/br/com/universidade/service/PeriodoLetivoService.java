@@ -35,11 +35,29 @@ public class PeriodoLetivoService implements IPeriodoLetivoService{
 
     @Override
     public String salvar(PeriodoLetivo periodoLetivo) {
+        
+        TypedQuery<PeriodoLetivo> periodoLetivoQuery = periodoLetivoDao
+                .getEntityManager().createQuery
+        ("SELECT pl FROM PeriodoLetivo pl WHERE pl.descricao = :desc",PeriodoLetivo.class);
+        
+        periodoLetivoQuery.setParameter("desc", periodoLetivo.getDescricao());
+        
+//        TypedQuery<PeriodoLetivo> dataPeriodoLetivoQuery = periodoLetivoDao
+//                .getEntityManager().createQuery
+//        ("SELECT pl FROM PeriodoLetivo pl WHERE pl.dataInicio = pl.dataFim",PeriodoLetivo.class);
+//                
         try{
-            if(periodoLetivo.getIdPeriodoLetivo() != null){
+            
+            
+            if(periodoLetivo.getIdPeriodoLetivo() != null && periodoLetivo.getDataInicio() != periodoLetivo.getDataFim()){
                 periodoLetivoDao.update(periodoLetivo);
-            }else{
+            }else if(periodoLetivo.getIdPeriodoLetivo() == null && periodoLetivoQuery.getResultList().isEmpty() 
+                    && periodoLetivo.getDataInicio() != periodoLetivo.getDataFim()){
                 periodoLetivoDao.save(periodoLetivo);
+            }else if(periodoLetivo.getDataInicio() == periodoLetivo.getDataFim()){
+                return "A Data Fim não pode ser igual a Data Inicio";
+            }else{
+                return "Este registro já existe na base de dados";
             }
         }catch(Exception ex){
             return ex.getMessage();

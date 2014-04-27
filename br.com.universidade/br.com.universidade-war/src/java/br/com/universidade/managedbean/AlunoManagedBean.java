@@ -3,54 +3,71 @@ package br.com.universidade.managedbean;
 import br.com.universidade.IService.IAlunoService;
 import br.com.universidade.aplicacao.Aluno;
 import br.com.universidade.util.MenssagemUtil;
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
+import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
+
 @Named(value = "alunoManagedBean")
-@RequestScoped
-public class AlunoManagedBean {
-    
+@ViewScoped
+public class AlunoManagedBean implements Serializable {
+
     @EJB
     private IAlunoService alunoService;
-    
+
     private Aluno aluno;
     private Aluno alunoSelecionado;
-    
-   public AlunoManagedBean(){
-       aluno = new Aluno();
-   }
-    
-    public List<Aluno> todos(){
-        return alunoService.listar();
+    private List<Aluno> alunos;
+    private String alunoConsulta;
+
+    public AlunoManagedBean() {
+        aluno = new Aluno();
     }
     
-    public void salvar(){        
-        String erro = alunoService.salvar(aluno);        
-        if(erro == null){
-            MenssagemUtil.addMensagemInfo("Aluno salvo com Sucesso!!!");
+    @PostConstruct
+    public void init(){
+        String id= FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id");
+	
+	if(id != null){
+            aluno = alunoService.obter(Integer.parseInt(id));
+	} 
+    }
+
+    public void salvar() {
+        String erro = alunoService.salvar(aluno);
+
+        if (erro == null) {
+            MenssagemUtil.addMensagemInfo("Aluno salvo com sucesso");
             aluno = new Aluno();
-        }else{
+        } else {
             MenssagemUtil.addMensagemError(erro);
         }
     }
     
-    public void novo(){
-        this.aluno = new Aluno();
-    }
-    
-    public void excluir(){
+    public void excluir() {
         String erro = alunoService.remover(alunoSelecionado.getPessoa().getIdPessoa());
-        if(erro == null){
-            MenssagemUtil.addMensagemInfo("Aluno excluído com sucesso!!!");
-        }else{
+
+        if (erro == null) {
+            MenssagemUtil.addMensagemInfo("Aluno excluído com sucesso");
+            this.alunos.remove(alunoSelecionado);
+        } else {
             MenssagemUtil.addMensagemError(erro);
         }
     }
     
-    public void atualizar(){
-        aluno = alunoSelecionado;
+    public void editar() throws IOException {
+        FacesContext.getCurrentInstance()
+                .getExternalContext()
+                .redirect("formulario.html?id="+alunoSelecionado.getPessoa().getIdPessoa());
+    }
+ 
+    public void consultarAluno(){
+        this.alunos = alunoService.listarPorNome(alunoConsulta);
     }
 
     public Aluno getAluno() {
@@ -67,6 +84,22 @@ public class AlunoManagedBean {
 
     public void setAlunoSelecionado(Aluno alunoSelecionado) {
         this.alunoSelecionado = alunoSelecionado;
+    }
+
+    public List<Aluno> getAlunos() {
+        return alunos;
+    }
+
+    public void setAutomoveis(List<Aluno> alunos) {
+        this.alunos = alunos;
+    }
+
+    public String getAlunoConsulta() {
+        return alunoConsulta;
+    }
+
+    public void setAlunoConsulta(String alunoConsulta) {
+        this.alunoConsulta = alunoConsulta;
     }
     
 }

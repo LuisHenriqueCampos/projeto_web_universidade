@@ -36,6 +36,13 @@ and open the template in the editor.
     </h:head>
     <h:body>
         
+        <p:ajaxStatus onstart="statusDialog.show();" onsuccess="statusDialog.hide();"/>  
+
+        <p:dialog modal="true" widgetVar="statusDialog" header="Carregando"   
+                  draggable="false" closable="false">  
+            <p:graphicImage value="/imagens/ajaxloadingbar.gif"/>
+        </p:dialog>
+        
         <p:layout fullPage="true">
             
             <p:layoutUnit position="north" size="130">
@@ -53,17 +60,14 @@ and open the template in the editor.
                         <p:submenu label="Cadastro">
                             
                             <p:menuitem value="Aluno" url="/aluno/index.html"/>
-                            <p:menuitem value="Professor" url="#"/>
+                            <p:menuitem value="Matrícula" url="#"/>
                             <p:menuitem value="Situação Matrícula" url="/situacaoMatricula/index.html"/>
                                                         
                         </p:submenu>
                         
-                        <p:menuitem value="Matrícula" url="#"/>
-                        
                         <p:submenu label="Turma">
                             
-                            <p:menuitem value="Curso" url="#"/>
-                            <p:menuitem value="Materia" url="#"/>
+                            <p:menuitem value="Curso" url="/curso/index.html"/>
                             <p:menuitem value="Periodo Letivo" url="/periodoLetivo/index.html"/>
                             
                         </p:submenu>

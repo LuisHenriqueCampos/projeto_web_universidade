@@ -1,56 +1,55 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
-<ui:fragment xmlns="http://www.w3.org/1999/xhtml"
-             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-             xmlns:p="http://primefaces.org/ui"
-             xmlns:h="http://java.sun.com/jsf/html">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <h:form id="formCadastro">
-        <br/>
-        <p:panel  id="painelCadastro">
-            
-            <p:growl/>
-            
-            <h:inputHidden value="#{alunoManagedBean.aluno.pessoa.idPessoa}"/>
-          
-            <h:panelGrid columns="4" cellpadding="2">
-                
-                <h:outputLabel value="Aluno:*"/>
-                <p:inputText value="#{alunoManagedBean.aluno.pessoa.nome}"/>
-                
-                <h:outputLabel value="Data de Nascimento:*" /> 
-                <p:calendar locale="pt_BR" navigator="true" pattern="dd/MM/yyyy" 
-                            value="#{alunoManagedBean.aluno.pessoa.dataNascimento}"/>
-                
-                <h:outputLabel value="CPF:*" />  
-                <p:inputMask value="#{alunoManagedBean.aluno.pessoa.cpf}" mask="999.999.999-99"/>
-                
-                <h:outputLabel value="Nome do Responsável:*"/>
-                <p:inputText value="#{alunoManagedBean.aluno.nomeResponsavel}"/>
-                
-                <h:outputLabel value="Email: "/>
-                <p:inputText value="#{alunoManagedBean.aluno.email}"/>
-                
-                <h:outputLabel value=" " />
-                <h:outputLabel value=" " />
-                
-                <p:commandButton value="Salvar" icon="ui-icon-disk"
-                                 actionListener="#{alunoManagedBean.salvar()}"
-                                 update="painelCadastro,:formTabela:tabela"/>
-                
-                 <p:commandButton value="Novo" icon="ui-icon-plus"
-                                  actionListener="#{alunoManagedBean.novo()}"
-                                  process="@this"
-                                 update="@form"/>
-                
-            </h:panelGrid>
-            
-        </p:panel>
-        <br/>
-    </h:form>
-</ui:fragment>
+    <ui:composition template="../template.xhtml">
+
+        <ui:define name="conteudo">
+
+            <h:form id="formCadastro">
+                <p:panel header="Aluno" id="painelCadastro">
+                    <p:growl />
+                    <h:inputHidden value="#{alunoManagedBean.aluno.pessoa.idPessoa}"/>
+                    <h:panelGrid columns="2" cellpadding="7">
+                        
+                        <h:outputLabel value="Nome:* " />
+                        <p:inputText value="#{alunoManagedBean.aluno.pessoa.nome}" size="60"/>
+                        
+                        <h:outputLabel value="Data Nascimento:*"/> 
+                        <p:calendar locale="pt_BR" navigator="true" pattern="dd/MM/yyyy" 
+                                    value="#{alunoManagedBean.aluno.pessoa.dataNascimento}" size="25"/>
+
+                        <h:outputLabel value="CPF:*" />
+                        <p:inputMask value="#{alunoManagedBean.aluno.pessoa.cpf}" mask="999.999.999-99" size="25"/>                  
+                    
+                        <h:outputLabel value="Nome Responsável:*" />
+                        <p:inputText value="#{alunoManagedBean.aluno.nomeResponsavel}" size="60"/>
+                        
+                        <h:outputLabel value="Email:"/>
+                        <p:inputText value="#{alunoManagedBean.aluno.email}" size="60"/>
+
+                    </h:panelGrid>
+
+                    <p:button  icon="ui-icon-arrowreturnthick-1-w" 
+                               value="Voltar"
+                               outcome="index.html"/>
+
+                    <p:commandButton
+                        value="Salvar"
+                        icon="ui-icon-disk" 
+                        actionListener="#{alunoManagedBean.salvar()}" 
+                        update="painelCadastro" />
+
+
+                    <p:button  icon="ui-icon-plus" 
+                               value="Novo"                               
+                               outcome="formulario.html"/>
+                </p:panel> 
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
+

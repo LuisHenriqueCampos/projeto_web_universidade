@@ -29,9 +29,6 @@ public class Pessoa {
     
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "pessoa", cascade = CascadeType.ALL)
     private Aluno aluno;
-    
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "pessoa", cascade = CascadeType.ALL)
-    private Professor professor;
 
     public Integer getIdPessoa() {
         return idPessoa;
@@ -72,14 +69,6 @@ public class Pessoa {
     public void setAluno(Aluno aluno) {
         this.aluno = aluno;
     }
-
-    public Professor getProfessor() {
-        return professor;
-    }
-
-    public void setProfessor(Professor professor) {
-        this.professor = professor;
-    }  
     
 }
 

@@ -1,19 +1,114 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:ui="http://java.sun.com/jsf/facelets">
-    
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
     <ui:composition template="../template.xhtml">
-        <ui:define name="titulo">Cadastro Aluno</ui:define>
-        <ui:define name="favicon"><link rel="icon" href="../imagens/icon_software.png"/></ui:define>
+
         <ui:define name="conteudo">
-            <ui:include src="formulario.xhtml"/>
-            <ui:include src="tabela.xhtml"/>
+            <p:growl/><br/>
+            <h:form>
+                <p:panel header="Consultar Alunos">
+                    <p:growl/>
+                    <h:panelGrid columns="2" cellpadding="5">
+                        
+                        <h:outputLabel value="Nome Aluno:"/>
+                        <p:inputText value="#{alunoManagedBean.alunoConsulta}" size="60"/>
+                    
+                    </h:panelGrid>
+                    
+                    <h:panelGrid columns="3" cellpadding="5">
+                        
+                        <p:commandButton
+                            value="Procurar"
+                            icon="ui-icon-search" 
+                            actionListener="#{alunoManagedBean.consultarAluno()}" 
+                            update="painelAlunos" />
+                        
+                        <p:button
+                            icon="ui-icon-trash"
+                            value="Limpar"
+                            outcome="index.html" />
+                                  
+
+                        <p:button  
+                            icon="ui-icon-plus" 
+                            value="Novo"
+                            outcome="formulario.html"/>
+                    </h:panelGrid>
+
+                </p:panel>
+
+                <p:contextMenu for="tabela">   
+                    <p:menuitem value="Excluir" icon="ui-icon-close" 
+                                actionListener="#{alunoManagedBean.excluir()}" 
+                                update="painelAlunos" />
+
+                    <p:menuitem value="Editar" icon="ui-icon-pencil"
+                                ajax="false"
+                                action="#{alunoManagedBean.editar()}"/> 
+                </p:contextMenu>  
+
+                <br/>
+                <p:outputPanel id="painelAlunos">
+                    <p:growl/>
+
+                    <p:dataTable value="#{alunoManagedBean.alunos}"
+                                 var="aluno"
+                                 id="tabela"
+                                 rendered="#{alunoManagedBean.alunos != null}"
+                                 paginator="true"
+                                 rows="5"
+                                 emptyMessage="Nenhuma aluno encontrado"
+                                 rowKey="#{aluno.pessoa.idPessoa}" 
+                                 selection="#{alunoManagedBean.alunoSelecionado}"
+                                 selectionMode="single">
+
+                        <p:column headerText="Código" style="width: 2%">
+                            #{aluno.pessoa.idPessoa}
+                        </p:column>
+
+                        <p:column headerText="Aluno" style="width: 25%">
+                            #{aluno.pessoa.nome}
+                        </p:column>                       
+                        
+                        <p:column headerText="Data de Nascimento" style="width: 8%">
+                            <h:outputText value="#{aluno.pessoa.dataNascimento}"> 
+                                <f:convertDateTime type="date" pattern="dd/MM/yyyy"/>
+                            </h:outputText> 
+                        </p:column>
+                        
+                        <p:column headerText="CPF" style="width: 20%">
+                            #{aluno.pessoa.cpf}
+                        </p:column>
+                        
+                         <p:column headerText="Nome Responsável" style="width: 25%">
+                            #{aluno.nomeResponsavel}
+                        </p:column>
+                        
+                         <p:column headerText="Email" style="width: 20%">
+                            #{aluno.email}
+                        </p:column>
+                        
+                       
+                        
+                    </p:dataTable>
+                
+                 </p:outputPanel>
+            </h:form>
+
+                
+                
+                
+               
+               
+
         </ui:define>
     </ui:composition>
+    
+    
+
+
 </html>

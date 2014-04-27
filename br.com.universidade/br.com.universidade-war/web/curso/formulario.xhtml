@@ -16,27 +16,22 @@ and open the template in the editor.
             
             <p:messages/>
             
-            <h:inputHidden value="#{periodoLetivoManagedBean.periodoLetivo.idPeriodoLetivo}"/>
+            <h:inputHidden value="#{cursoManagedBean.curso.idCurso}"/>
             
-            <h:panelGrid columns="2" cellpadding="5">
+            <h:panelGrid columns="6" cellpadding="5">
                 
-                <h:outputLabel value="Período Letivo:*"/>
-                <p:inputText value="#{periodoLetivoManagedBean.periodoLetivo.descricao}"/>
+                <h:outputLabel value="Curso:*"/>
+                <p:inputText value="#{cursoManagedBean.curso.nomeCurso}"/>
                 
-                <h:outputLabel value="Data Inicio:*" /> 
-                <p:calendar locale="pt_BR" navigator="true" pattern="dd/MM/yyyy" 
-                            value="#{periodoLetivoManagedBean.periodoLetivo.dataInicio}"/>
-                
-                <h:outputLabel value="Data Fim:*" /> 
-                <p:calendar locale="pt_BR" navigator="true" pattern="dd/MM/yyyy"
-                            value="#{periodoLetivoManagedBean.periodoLetivo.dataFim}"/>
+                <h:outputLabel value="Carga Horária:*"/>
+                <p:inputText value="#{cursoManagedBean.curso.cargaHoraria}"/>
                 
                 <p:commandButton value="Salvar" icon="ui-icon-disk"
-                                 actionListener="#{periodoLetivoManagedBean.salvar()}"
+                                 actionListener="#{cursoManagedBean.salvar()}"
                                  update="painelCadastro,:formTabela:tabela"/>
                 
                  <p:commandButton value="Novo" icon="ui-icon-plus"
-                                  actionListener="#{periodoLetivoManagedBean.novo()}"
+                                  actionListener="#{cursoManagedBean.novo()}"
                                   process="@this"
                                   update="@form"/>
                 

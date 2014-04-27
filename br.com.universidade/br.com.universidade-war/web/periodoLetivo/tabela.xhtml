@@ -25,7 +25,7 @@ and open the template in the editor.
             
         </p:contextMenu>
         
-        <p:fieldset legend="Períodos Letivos" toggleable="true" toggleSpeed="400">
+        <p:fieldset legend="Períodos Letivos" toggleable="true" toggleSpeed="400" collapsed="true">
             
             <p:panel  id="periodoLetivo">
                 
@@ -38,32 +38,60 @@ and open the template in the editor.
                              selection="#{periodoLetivoManagedBean.periodoLetivoSelecionado}"
                              selectionMode="single" >
                     
-                    <p:column style="width: 10%" headerText="Código" >
+                    <p:column style="width: 16%" headerText="Código" >
                         #{periodoLetivo.idPeriodoLetivo}
                     </p:column> 
                     
-                    <p:column style="width: 50%" headerText="Periodo Letivo" >
+                    <p:column style="width: 80%" headerText="Periodo Letivo" >
                         #{periodoLetivo.descricao}
                     </p:column>
                     
-                    <p:column style="width: 20%" headerText="Data Inicio">
-                        
-                        <h:outputText value="#{periodoLetivo.dataInicio}">
-                            <f:convertDateTime type="date" pattern="dd/MM/yyyy"/>
-                        </h:outputText>
-                        
-                    </p:column>
+                   
                     
-                    <p:column style="width: 20%" headerText="Data Fim">
+                    <p:column style="width:4%">  
                         
-                        <h:outputText value="#{periodoLetivo.dataFim}">
-                            <f:convertDateTime type="date" pattern="dd/MM/yyyy"/>
-                        </h:outputText>
+                        <p:commandButton id="selectButton" update="@form:formTabela:display" process="@this" oncomplete="PF('carDialog').show()" icon="ui-icon-search" title="View">  
+                           
+                            <f:setPropertyActionListener value="#{periodoLetivo}" target="#{periodoLetivoManagedBean.periodoLetivoSelecionado}" />  
                         
-                    </p:column> 
+                        </p:commandButton>  
+                    </p:column>  
                     
-                </p:dataTable>            
-            </p:panel>
-        </p:fieldset>  
+                </p:dataTable>
+                
+                </p:panel>
+        </p:fieldset>
+                
+        <p:dialog header="Detalhes Períodos Letivos" widgetVar="carDialog" resizable="false" id="carDlg"  
+                showEffect="fade" hideEffect="explode" modal="false">  
+  
+        <h:panelGrid id="display" columns="2" cellpadding="4" style="margin:0 auto;">  
+  
+            <f:facet name="header">  
+                <p:graphicImage value="../imagens/icon_software.png"/>  
+            </f:facet>  
+  
+            <h:outputText value="Código:" />  
+            <h:outputText value="#{periodoLetivoManagedBean.periodoLetivoSelecionado.idPeriodoLetivo}" style="font-weight:bold"/>  
+  
+            <h:outputText value="Período Letivo:" />  
+            <h:outputText value="#{periodoLetivoManagedBean.periodoLetivoSelecionado.descricao}" style="font-weight:bold"/>  
+  
+  
+            <h:outputText value="Data Início:" />  
+            <h:outputText value="#{periodoLetivoManagedBean.periodoLetivoSelecionado.dataInicio}" style="font-weight:bold"> 
+                <f:convertDateTime type="date" pattern="dd/MM/yyyy"/>
+            </h:outputText>
+  
+            <h:outputText value="Data Fim:" />  
+            <h:outputText value="#{periodoLetivoManagedBean.periodoLetivoSelecionado.dataFim}" style="font-weight:bold"> 
+                <f:convertDateTime type="date" pattern="dd/MM/yyyy"/>
+            </h:outputText>  
+  
+        </h:panelGrid>  
+  
+    </p:dialog>  
+                
+              
     </h:form>    
 </ui:fragment>

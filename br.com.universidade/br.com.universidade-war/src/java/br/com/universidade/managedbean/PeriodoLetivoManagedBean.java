@@ -31,6 +31,12 @@ public class PeriodoLetivoManagedBean {
     }
     
     public void salvar(){
+        
+        if(periodoLetivo.getDataInicio().getTime() >= periodoLetivo.getDataFim().getTime()){
+            MenssagemUtil.addMensagemError("Verifique a Data Inicio e a Data Fim");
+            return;
+        }
+        
         String erro = periodoLetivoService.salvar(periodoLetivo);
         
         if(erro == null){
@@ -38,7 +44,8 @@ public class PeriodoLetivoManagedBean {
             periodoLetivo = new PeriodoLetivo();
         }else{
             MenssagemUtil.addMensagemError(erro);
-        }                    
+        }  
+        
     }
     
     public void excluir(){

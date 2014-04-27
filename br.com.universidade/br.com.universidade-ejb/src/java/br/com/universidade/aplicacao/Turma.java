@@ -28,10 +28,6 @@ public class Turma {
     private Integer quantidadeVagas;
     
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idProfessor", nullable = false)
-    private Professor professor;
-    
-    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idCurso", nullable = false)
     private Curso curso;
     
@@ -80,14 +76,6 @@ public class Turma {
 
     public void setQuantidadeVagas(Integer quantidadeVagas) {
         this.quantidadeVagas = quantidadeVagas;
-    }
-
-    public Professor getProfessor() {
-        return professor;
-    }
-
-    public void setProfessor(Professor professor) {
-        this.professor = professor;
     }
 
     public Curso getCurso() {

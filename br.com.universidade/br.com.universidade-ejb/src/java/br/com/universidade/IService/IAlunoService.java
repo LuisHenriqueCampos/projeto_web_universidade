@@ -8,6 +8,7 @@ public interface IAlunoService {
     List<Aluno> listar();
     String remover(Integer idPessoa);
     String salvar(Aluno aluno);
-    Aluno obter(Integer id);  
+    Aluno obter(Integer id);
+    List<Aluno> listarPorNome(String aluno);
     
 }

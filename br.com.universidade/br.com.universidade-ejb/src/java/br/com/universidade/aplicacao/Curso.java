@@ -20,12 +20,6 @@ public class Curso {
     
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "curso", cascade = CascadeType.ALL)
     private List<Turma> turmas;
-    
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "cursomateria",
-                joinColumns = @JoinColumn(name = "idCurso"),
-                inverseJoinColumns = @JoinColumn(name = "idMateria"))
-    private List<Materia> materias;
 
     public Short getIdCurso() {
         return idCurso;
@@ -58,13 +52,5 @@ public class Curso {
     public void setTurmas(List<Turma> turmas) {
         this.turmas = turmas;
     }
-
-    public List<Materia> getMaterias() {
-        return materias;
-    }
-
-    public void setMaterias(List<Materia> materias) {
-        this.materias = materias;
-    }   
     
 }
