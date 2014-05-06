@@ -1,6 +1,7 @@
 package br.com.universidade.aplicacao;
 
 import java.util.Date;
+import java.util.Objects;
 import javax.persistence.*;
 
 @Entity
@@ -77,6 +78,28 @@ public class Matricula {
 
     public void setTurma(Turma turma) {
         this.turma = turma;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 73 * hash + Objects.hashCode(this.idMatricula);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Matricula other = (Matricula) obj;
+        if (!Objects.equals(this.idMatricula, other.idMatricula)) {
+            return false;
+        }
+        return true;
     }
        
 }

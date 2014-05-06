@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" 
-             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence 
-                http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence                  http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="br.com.universidade-ejbPU" transaction-type="JTA">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <jta-data-source>universidade</jta-data-source>
@@ -12,10 +9,10 @@
     <class>br.com.universidade.aplicacao.Matricula</class>
     <class>br.com.universidade.aplicacao.PeriodoLetivo</class>
     <class>br.com.universidade.aplicacao.Pessoa</class>
-    <class>br.com.universidade.aplicacao.Professor</class>
     <class>br.com.universidade.aplicacao.SituacaoMatricula</class>
     <class>br.com.universidade.aplicacao.Turma</class>
     <!--<exclude-unlisted-classes>true</exclude-unlisted-classes>-->
+    <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/universidade"/>

@@ -1,6 +1,7 @@
 package br.com.universidade.aplicacao;
 
 import java.util.Date;
+import java.util.Objects;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -9,6 +10,8 @@ import javax.validation.constraints.Size;
 @Table(name = "pessoa")
 public class Pessoa {
     
+	//Pessoa Luis
+	
     @Column(name = "idPessoa", nullable = false)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -68,6 +71,28 @@ public class Pessoa {
 
     public void setAluno(Aluno aluno) {
         this.aluno = aluno;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 89 * hash + Objects.hashCode(this.idPessoa);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Pessoa other = (Pessoa) obj;
+        if (!Objects.equals(this.idPessoa, other.idPessoa)) {
+            return false;
+        }
+        return true;
     }
     
 }

@@ -2,6 +2,7 @@ package br.com.universidade.aplicacao;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.*;
 
 @Entity
@@ -101,5 +102,27 @@ public class Turma {
     public void setMatriculas(List<Matricula> matriculas) {
         this.matriculas = matriculas;
     }   
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.idTurma);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Turma other = (Turma) obj;
+        if (!Objects.equals(this.idTurma, other.idTurma)) {
+            return false;
+        }
+        return true;
+    }
     
 }

@@ -1,6 +1,7 @@
 package br.com.universidade.aplicacao;
 
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -69,5 +70,27 @@ public class Aluno {
     public void setMatriculas(List<Matricula> matriculas) {
         this.matriculas = matriculas;
     }    
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 11 * hash + Objects.hashCode(this.idPessoa);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Aluno other = (Aluno) obj;
+        if (!Objects.equals(this.idPessoa, other.idPessoa)) {
+            return false;
+        }
+        return true;
+    }
     
 }

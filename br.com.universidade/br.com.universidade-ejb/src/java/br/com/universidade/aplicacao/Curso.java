@@ -1,6 +1,7 @@
 package br.com.universidade.aplicacao;
 
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.*;
 
 @Entity
@@ -20,6 +21,12 @@ public class Curso {
     
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "curso", cascade = CascadeType.ALL)
     private List<Turma> turmas;
+    
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "CursoMateria",
+            joinColumns = @JoinColumn(name = "idCurso"),
+            inverseJoinColumns = @JoinColumn(name = "idMateria"))
+    private List<Materia> materias;
 
     public Short getIdCurso() {
         return idCurso;
@@ -51,6 +58,36 @@ public class Curso {
 
     public void setTurmas(List<Turma> turmas) {
         this.turmas = turmas;
+    }
+
+    public List<Materia> getMaterias() {
+        return materias;
+    }
+
+    public void setMaterias(List<Materia> materias) {
+        this.materias = materias;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 61 * hash + Objects.hashCode(this.idCurso);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Curso other = (Curso) obj;
+        if (!Objects.equals(this.idCurso, other.idCurso)) {
+            return false;
+        }
+        return true;
     }
     
 }

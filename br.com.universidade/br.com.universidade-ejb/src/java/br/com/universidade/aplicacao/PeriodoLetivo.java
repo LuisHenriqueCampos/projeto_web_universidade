@@ -2,6 +2,7 @@ package br.com.universidade.aplicacao;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -68,6 +69,28 @@ public class PeriodoLetivo {
 
     public void setTurmas(List<Turma> turmas) {
         this.turmas = turmas;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 61 * hash + Objects.hashCode(this.idPeriodoLetivo);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final PeriodoLetivo other = (PeriodoLetivo) obj;
+        if (!Objects.equals(this.idPeriodoLetivo, other.idPeriodoLetivo)) {
+            return false;
+        }
+        return true;
     }
     
 }
