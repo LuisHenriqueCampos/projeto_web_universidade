@@ -25,14 +25,15 @@ and open the template in the editor.
             
         </p:contextMenu>
         
-        <p:fieldset legend="Situação Matrícula" toggleable="true" toggleSpeed="400">
+        <p:fieldset legend="Situação Matrícula" toggleable="true" toggleSpeed="400" collapsed="true">
             
             <p:panel id="painelSituacaoMatricula">
                 
                 <p:growl/>
                 
                 <p:dataTable emptyMessage="Nenhuma Situação da Matrícula foi Cadastrada." 
-                             paginator="true" rows="10" var="situacaoMatricula" 
+                             paginator="true" rows="10" var="situacaoMatricula"
+                             paginatorPosition="bottom"
                              value="#{situacaoMatriculaManagedBean.todos()}" id="tabela"
                              rowKey="#{situacaoMatricula.idSituacaoMatricula}"
                              selection="#{situacaoMatriculaManagedBean.situacaoMatriculaSelecionado}"

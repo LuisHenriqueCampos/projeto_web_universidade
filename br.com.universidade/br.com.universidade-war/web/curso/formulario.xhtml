@@ -8,7 +8,8 @@ and open the template in the editor.
 <ui:fragment xmlns="http://www.w3.org/1999/xhtml"
              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
              xmlns:p="http://primefaces.org/ui"
-             xmlns:h="http://java.sun.com/jsf/html">
+             xmlns:h="http://java.sun.com/jsf/html"
+             xmlns:f="http://xmlns.jcp.org/jsf/core">
     
 
     <h:form id="formCadastro">
@@ -19,15 +20,29 @@ and open the template in the editor.
             
             <h:inputHidden value="#{cursoManagedBean.curso.idCurso}"/>
             
-            <h:panelGrid columns="6" cellpadding="5">
+            <h:panelGrid columns="2" cellpadding="10">
                 
                 <h:outputLabel value="Curso:*"/>
-                <p:inputText value="#{cursoManagedBean.curso.nomeCurso}"/>
+                <p:inputText value="#{cursoManagedBean.curso.nomeCurso}" size="50"/>
                 
                 <h:outputLabel value="Carga Horária:*"/>
-                <p:inputText value="#{cursoManagedBean.curso.cargaHoraria}"/>
+                <p:inputText value="#{cursoManagedBean.curso.cargaHoraria}"/>                
+                             
+                <p:selectCheckboxMenu value="#{cursoManagedBean.curso.materias}" 
+                                      label="Selecione as Matérias" filter="true" 
+                                      filterMatchMode="startsWith"
+                                      converter="materiaConverter"
+                                      panelStyle="auto">
+                    <f:selectItems value="#{materiaManagedBean.todos()}" 
+                                   var="mat"
+                                   itemLabel="#{mat.descricao}"
+                                   itemValue="#{mat}"/>
+                </p:selectCheckboxMenu>
+
                 
-                <p:commandButton value="Salvar" icon="ui-icon-disk"
+                
+            </h:panelGrid>
+            <p:commandButton value="Salvar" icon="ui-icon-disk"
                                  actionListener="#{cursoManagedBean.salvar()}"
                                  update="painelCadastro,:formTabela:tabela"/>
                 
@@ -35,8 +50,6 @@ and open the template in the editor.
                                   actionListener="#{cursoManagedBean.novo()}"
                                   process="@this"
                                   update="@form"/>
-                
-            </h:panelGrid>
             
         </p:panel>
         <br/>

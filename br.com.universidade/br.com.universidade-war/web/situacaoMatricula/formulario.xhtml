@@ -18,20 +18,20 @@ and open the template in the editor.
             <p:growl/>
             
             <h:inputHidden value="#{situacaoMatriculaManagedBean.situacaoMatricula.idSituacaoMatricula}"/>
-            <h:panelGrid columns="2">
+            <h:panelGrid columns="2" cellpadding="8">
                 
                 <h:outputLabel value="Situação da Matrícula:*"/>
-                <p:inputText value="#{situacaoMatriculaManagedBean.situacaoMatricula.descricao}"/>
-                                
-                <p:commandButton value="Salvar" icon="ui-icon-disk"
-                                 actionListener="#{situacaoMatriculaManagedBean.salvar()}"
-                                 update="painelCadastro,:formTabela:tabela"/>
-                
-                 <p:commandButton value="Novo" icon="ui-icon-plus"
-                                  actionListener="#{situacaoMatriculaManagedBean.novo()}"
-                                 update="painelCadastro"/>
+                <p:inputText value="#{situacaoMatriculaManagedBean.situacaoMatricula.descricao}" size="50"/>               
                 
             </h:panelGrid>
+            
+            <p:commandButton value="Salvar" icon="ui-icon-disk"
+                             actionListener="#{situacaoMatriculaManagedBean.salvar()}"
+                             update="painelCadastro,:formTabela:tabela"/>
+                
+            <p:commandButton value="Novo" icon="ui-icon-plus"
+                             actionListener="#{situacaoMatriculaManagedBean.novo()}"
+                             update="painelCadastro"/>
             
         </p:panel>
         

@@ -25,14 +25,15 @@ and open the template in the editor.
             
         </p:contextMenu>
         
-        <p:fieldset legend="Cursos" toggleable="true" toggleSpeed="400">
+        <p:fieldset legend="Cursos" toggleable="true" toggleSpeed="400" collapsed="true">
             
             <p:panel  id="curso">
                 
                 <p:growl/>
                 
                 <p:dataTable emptyMessage="Nenhum Curso Cadastrado" 
-                             paginator="true" rows="10" var="curso" 
+                             paginator="true" rows="5" var="curso"
+                             paginatorPosition="bottom"
                              value="#{cursoManagedBean.todos()}" id="tabela"
                              rowKey="#{curso.idCurso}"
                              selection="#{cursoManagedBean.cursoSelecionado}"
@@ -42,12 +43,18 @@ and open the template in the editor.
                         #{curso.idCurso}
                     </p:column> 
                     
-                    <p:column style="width: 65%" headerText="Curso" >
+                    <p:column style="width: 40%" headerText="Curso" >
                         #{curso.nomeCurso}
                     </p:column>
                     
-                    <p:column style="width: 25%" headerText="Carga Horária" >
+                    <p:column style="width: 15%" headerText="Carga Horária" >
                         #{curso.cargaHoraria}
+                    </p:column>
+                    
+                    <p:column style="width: 35%" headerText="Matérias" >
+                        <ui:repeat value="#{curso.materias}" var="m">
+                            <p:graphicImage value="../imagens/materias.png"/> #{m.descricao}<br/>
+                        </ui:repeat>                        
                     </p:column>
                     
                 </p:dataTable>            

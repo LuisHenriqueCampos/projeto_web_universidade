@@ -23,7 +23,7 @@ public class Curso {
     private List<Turma> turmas;
     
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "CursoMateria",
+    @JoinTable(name = "cursomateria",
             joinColumns = @JoinColumn(name = "idCurso"),
             inverseJoinColumns = @JoinColumn(name = "idMateria"))
     private List<Materia> materias;

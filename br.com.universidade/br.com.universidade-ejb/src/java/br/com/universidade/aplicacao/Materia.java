@@ -30,8 +30,8 @@ public class Materia {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idMateria;
     
-    @Column(name = "materia", nullable = false, length = 50)
-    private String materia;
+    @Column(name = "descricao", nullable = false, length = 50)
+    private String descricao;
     
     @ManyToMany(fetch = FetchType.LAZY,mappedBy = "materias")
     private List<Curso> cursos;
@@ -44,13 +44,13 @@ public class Materia {
         this.idMateria = idMateria;
     }
 
-    public String getMateria() {
-        return materia;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setMateria(String materia) {
-        this.materia = materia;
-    }
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }    
 
     public List<Curso> getCursos() {
         return cursos;

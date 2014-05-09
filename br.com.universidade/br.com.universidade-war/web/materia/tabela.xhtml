@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<ui:fragment xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <br/>
+    <h:form id="formTabela">
+        
+        
+        
+        <p:fieldset legend="Matérias Cadastradas" toggleable="true" toggleSpeed="400">
+            
+            <p:panel id="painelMateria">
+                
+                <p:growl/>
+                
+                <p:dataTable emptyMessage="Nenhuma Matéria Cadastrada." 
+                             paginator="true" rows="5" var="mat"
+                             paginatorPosition="bottom"
+                             value="#{materiaManagedBean.todos()}" id="tabela"
+                             rowKey="#{mat.idMateria}"
+                             selection="#{materiaManagedBean.materiaSelecionada}"
+                             selectionMode="single">
+            
+                    <p:column style="width: 10%" headerText="Código">
+                        #{mat.idMateria}
+                    </p:column>
+            
+                    <p:column style="width: 90%" headerText="Matéria">
+                        #{mat.descricao}
+                    </p:column>
+            
+                </p:dataTable>
+            
+            </p:panel>
+        
+        </p:fieldset>    
+            
+    </h:form>
+    
+</ui:fragment>

@@ -31,6 +31,10 @@ public class SituacaoMatriculaManagedBean {
     }
     
     public void salvar(){
+        
+        System.out.println("IDMATERIA: "+situacaoMatricula.getIdSituacaoMatricula());
+        System.out.println("NOME: "+situacaoMatricula.getDescricao());
+        
         String erro = situacaoMatriculaService.salvar(situacaoMatricula);
         if(erro == null){
             MenssagemUtil.addMensagemInfo("Situação da Matrícula salvo com sucesso!!!");

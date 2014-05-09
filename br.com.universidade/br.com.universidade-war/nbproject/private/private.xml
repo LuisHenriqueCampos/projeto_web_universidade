@@ -3,7 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Luis/Documents/GitHub/projeto_web_universidade/br.com.universidade/br.com.universidade-war/src/java/br/com/universidade/converter/AlunoConverter.java</file>
+            <file>file:/C:/Users/Luis/Documents/GitHub/projeto_web_universidade/br.com.universidade/br.com.universidade-war/web/situacaoMatricula/tabela.xhtml</file>
+            <file>file:/C:/Users/Luis/Documents/GitHub/projeto_web_universidade/br.com.universidade/br.com.universidade-war/web/materia/tabela.xhtml</file>
+            <file>file:/C:/Users/Luis/Documents/GitHub/projeto_web_universidade/br.com.universidade/br.com.universidade-war/web/situacaoMatricula/formulario.xhtml</file>
+            <file>file:/C:/Users/Luis/Documents/GitHub/projeto_web_universidade/br.com.universidade/br.com.universidade-war/web/materia/index.xhtml</file>
         </group>
     </open-files>
 </project-private>

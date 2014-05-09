@@ -27,7 +27,7 @@ public class CursoService implements ICursoService{
     @Override
     public List<Curso> listar() {
         TypedQuery<Curso> cursoQuery = cursoDao
-                .getEntityManager().createQuery("SELECT c FROM Curso c",Curso.class);
+                .getEntityManager().createQuery("SELECT DISTINCT c FROM Curso c JOIN FETCH c.materias ORDER BY c.nomeCurso",Curso.class);
         return cursoDao.all(cursoQuery);
     }
 
