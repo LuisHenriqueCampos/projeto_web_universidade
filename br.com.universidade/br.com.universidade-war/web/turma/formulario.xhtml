@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<ui:fragment xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+             xmlns:p="http://primefaces.org/ui"
+             xmlns:h="http://java.sun.com/jsf/html"
+             xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <br/>
+    <h:form id="formCadastro">
+        
+        <p:panel  id="painelCadastro">
+            
+            <p:growl/>
+            
+            <h:inputHidden value="#{turmaManagedBean.turma.idTurma}"/>
+            <h:panelGrid columns="2" cellpadding="8">
+                
+                <h:outputLabel value="Nome da Turma:*"/>
+                <p:inputText value="#{turmaManagedBean.turma.nomeTurma}" size="50"/>
+                
+                <h:outputLabel value="Horário Início:*"/>
+                <p:calendar value="#{turmaManagedBean.turma.horarioInicio}" pattern="HH:mm" timeOnly="true" />
+                
+                <h:outputLabel value="Horário Fim:*"/>
+                <p:calendar value="#{turmaManagedBean.turma.horarioFim}" pattern="HH:mm" timeOnly="true" />
+                
+                <h:outputLabel value="Curso:*"/>
+                <p:selectOneMenu value="#{turmaManagedBean.turma.curso}"
+                                         converter="cursoConverter"
+                                         id="comboCurso">
+                            <f:selectItem itemLabel="Selecione um Curso" itemValue=""/>
+                            <f:selectItems value="#{cursoManagedBean.todos()}"
+                                           var="t"
+                                           itemLabel="#{t.nomeCurso}"
+                                           itemValue="#{t}"/>
+                </p:selectOneMenu>
+                
+                <h:outputLabel value="Período Letivo:*"/>
+                <p:selectOneMenu value="#{turmaManagedBean.turma.periodoLetivo}"
+                                         converter="periodoLetivoConverter"
+                                         id="comboPeriodoLetivo">
+                            <f:selectItem itemLabel="Selecione um Período Letivo" itemValue=""/>
+                            <f:selectItems value="#{periodoLetivoManagedBean.todos()}"
+                                           var="pl"
+                                           itemLabel="#{pl.descricao}"
+                                           itemValue="#{pl}"/>
+                </p:selectOneMenu>
+                
+                <h:outputLabel value="Quantidade de Vagas:*"/>
+                <p:inputText value="#{turmaManagedBean.turma.quantidadeVagas}"/>
+                
+            </h:panelGrid>
+            
+            <p:commandButton value="Salvar" icon="ui-icon-disk"
+                             actionListener="#{turmaManagedBean.salvar()}"
+                             update="painelCadastro,:formTabela:tabela"/>
+                
+            <p:commandButton value="Novo" icon="ui-icon-plus"
+                             actionListener="#{turmaManagedBean.novo()}"
+                             update="painelCadastro"/>
+            
+        </p:panel>
+        
+    </h:form>
+    <br/>
+</ui:fragment>
