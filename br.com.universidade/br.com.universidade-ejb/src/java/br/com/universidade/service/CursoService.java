@@ -44,11 +44,18 @@ public class CursoService implements ICursoService{
 
     @Override
     public String salvar(Curso curso) {
+        TypedQuery<Curso> cursoQuery = cursoDao.getEntityManager()
+                .createQuery("SELECT c FROM Curso c WHERE c.nomeCurso = :nome",Curso.class);
+        cursoQuery.setParameter("nome", curso.getNomeCurso());
         try{
-            if(curso.getIdCurso() != null){
+            if(curso.getIdCurso() != null && cursoQuery.getResultList().isEmpty() && !curso.getMaterias().isEmpty()){
                 cursoDao.update(curso);
-            }else{
+            }else if(curso.getIdCurso() == null && cursoQuery.getResultList().isEmpty() && !curso.getMaterias().isEmpty()){
                 cursoDao.save(curso);
+            }else if(curso.getIdCurso() == null && cursoQuery.getResultList().isEmpty() && curso.getMaterias().isEmpty()){
+                return "Selecione ao menos 1 matéria.";
+            }else{
+                return "Curso já foi cadastrado.";
             }
         }catch(Exception ex){
             return ex.getMessage();

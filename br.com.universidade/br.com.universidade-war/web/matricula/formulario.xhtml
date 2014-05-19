@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<ui:fragment xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+             xmlns:p="http://primefaces.org/ui"
+             xmlns:h="http://java.sun.com/jsf/html"
+             xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:form id="formCadastro">
+        <br/>
+        <p:panel  id="painelCadastro">
+            
+            <p:messages/>
+            
+            <h:inputHidden value="#{matriculaManagedBean.matricula.idMatricula}"/>
+            
+            <h:panelGrid columns="2" cellpadding="10">
+                
+                <h:outputText value="Aluno:*" />                
+                <p:autoComplete completeMethod="#{alunoManagedBean.autoComplete}"
+                                converter="alunoConverter"
+                                value="#{matriculaManagedBean.matricula.aluno}"
+                                var="a" itemLabel="#{a.pessoa.nome}" itemValue="#{a}" size="60">
+                    
+                </p:autoComplete>
+                
+                <h:outputLabel value="Turma:*"/>
+                <p:selectOneMenu value="#{matriculaManagedBean.matricula.turma}"
+                                         converter="turmaConverter"
+                                         id="comboTurma">
+                            <f:selectItem itemLabel="Selecione uma Turma" itemValue=""/>
+                            <f:selectItems value="#{turmaManagedBean.todos()}"
+                                           var="t"
+                                           itemLabel="#{t.nomeTurma}"
+                                           itemValue="#{t}"/>
+                </p:selectOneMenu>
+                
+                <h:outputLabel value="Situação Matrícula:*"/>
+                <p:selectOneMenu value="#{matriculaManagedBean.matricula.situacaoMatricula}"
+                                         converter="situacaoMatriculaConverter"
+                                         id="comboSit">
+                            <f:selectItem itemLabel="Selecione a Situação da Matrícula" itemValue=""/>
+                            <f:selectItems value="#{situacaoMatriculaManagedBean.todos()}"
+                                           var="s"
+                                           itemLabel="#{s.descricao}"
+                                           itemValue="#{s}"/>
+                </p:selectOneMenu>
+                
+                                
+                <h:outputLabel value="Nota Final:* " />
+                <p:inputText value="#{matriculaManagedBean.matricula.notaFinal}"/>                
+                
+                
+            </h:panelGrid>
+            
+            <p:commandButton value="Salvar" icon="ui-icon-disk"
+                             actionListener="#{matriculaManagedBean.salvar()}"
+                                 update="painelCadastro"/>
+                
+            <p:button value="Novo" icon="ui-icon-plus" outcome="index.html"/>
+            
+        </p:panel>
+        <br/>
+    </h:form>
+</ui:fragment>

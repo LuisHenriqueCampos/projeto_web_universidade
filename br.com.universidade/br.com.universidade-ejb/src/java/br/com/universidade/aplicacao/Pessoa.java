@@ -22,12 +22,13 @@ public class Pessoa {
     @Size(min = 5, max = 100, message = "O campo NOME tem que ter de 5 a 100 caracteres.")
     private String nome;
     
+    @NotNull(message = "O campo Data de Nascimento não pode ser Nulo.")
     @Column(name = "dataNascimento", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date dataNascimento;
     
+    @NotNull(message = "O campo CPF não pode ser Nulo.")
     @Column(name = "cpf", nullable = false, length = 14)
-    //@CPF(message = "CPF inválido.")
     private String cpf;
     
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "pessoa", cascade = CascadeType.ALL)

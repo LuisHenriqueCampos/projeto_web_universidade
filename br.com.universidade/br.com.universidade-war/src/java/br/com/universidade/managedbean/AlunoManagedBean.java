@@ -37,6 +37,10 @@ public class AlunoManagedBean implements Serializable {
             aluno = alunoService.obter(Integer.parseInt(id));
 	} 
     }
+    
+    public List<Aluno> todos(){
+        return alunoService.listar();
+    }
 
     public void salvar() {
         String erro = alunoService.salvar(aluno);
@@ -64,6 +68,11 @@ public class AlunoManagedBean implements Serializable {
         FacesContext.getCurrentInstance()
                 .getExternalContext()
                 .redirect("formulario.html?id="+alunoSelecionado.getPessoa().getIdPessoa());
+    }
+    
+    public List<Aluno> autoComplete(String nome){
+        System.out.println("#########################: "+nome);
+        return alunoService.listarPorNome(nome);
     }
  
     public void consultarAluno(){

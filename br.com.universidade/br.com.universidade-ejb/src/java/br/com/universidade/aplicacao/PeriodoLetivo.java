@@ -15,14 +15,16 @@ public class PeriodoLetivo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Short idPeriodoLetivo;
     
-    @Column(name = "descricao", nullable = false, length = 45)
-    @NotNull
+    @Column(name = "descricao", nullable = false, length = 6)
+    @NotNull(message = "O campo Período Letivo não pode ser Nulo.")
     private String descricao;
     
+    @NotNull(message = "O campo Data Início não pode ser Nulo.")
     @Column(name = "dataInicio", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date dataInicio;
     
+    @NotNull(message = "O campo Data Fim não pode ser Nulo.")
     @Column(name = "dataFim", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date dataFim;

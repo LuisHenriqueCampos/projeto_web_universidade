@@ -37,11 +37,18 @@ public class SituacaoMatriculaService implements ISituacaoMatriculaService{
 
     @Override
     public String salvar(SituacaoMatricula situacaoMatricula) {
+        TypedQuery<SituacaoMatricula> sitquery = situacaoMatriculaDao.getEntityManager()
+                .createQuery("SELECT s FROM SituacaoMatricula s WHERE s.descricao = :nome",SituacaoMatricula.class);
+        sitquery.setParameter("nome", situacaoMatricula.getDescricao());
+        
+        
         try{
-            if(situacaoMatricula.getIdSituacaoMatricula() != null){
+            if(situacaoMatricula.getIdSituacaoMatricula() != null && sitquery.getResultList().isEmpty()){
                 situacaoMatriculaDao.update(situacaoMatricula);
-            }else{
+            }else if(situacaoMatricula.getIdSituacaoMatricula() == null && sitquery.getResultList().isEmpty()){
                 situacaoMatriculaDao.save(situacaoMatricula);
+            }else{
+                return "A Situação da Matrícula já foi cadastrada!";
             }
         }catch(Exception ex){
             return ex.getMessage();

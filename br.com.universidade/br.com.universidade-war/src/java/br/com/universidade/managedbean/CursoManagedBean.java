@@ -54,7 +54,7 @@ public class CursoManagedBean {
     public void excluir(){
         String erro = cursoService.remover(cursoSelecionado.getIdCurso());
         if(erro == null){
-            MenssagemUtil.addMensagemInfo("Período Letivo excluido com sucesso!!!");
+            MenssagemUtil.addMensagemInfo("Curso excluido com sucesso!!!");
         }else{
             MenssagemUtil.addMensagemError(erro);
         }

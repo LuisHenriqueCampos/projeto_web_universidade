@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "turma")
@@ -14,24 +16,31 @@ public class Turma {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idTurma;
     
+    @NotNull(message = "O campo Nome da Turma não pode ser Nulo.")
+    @Size(min = 5, max = 45, message = " O campo Nome da Turma deve ter no mínimo 5 e no máximo 45 caracteres ")
     @Column(name = "nomeTurma", nullable = false, length = 45)
     private String nomeTurma;
     
+    @NotNull(message = "O campo Horário Início não pode ser Nulo.")
     @Column(name = "horarioInicio", nullable = false)
     @Temporal(TemporalType.TIME)
     private Date horarioInicio;
     
+    @NotNull(message = "O campo Horário Fim não pode ser Nulo.")
     @Column(name = "horarioFim", nullable = false)
     @Temporal(TemporalType.TIME)
     private Date horarioFim;
     
+    @NotNull(message = "O campo Quantidade de Vagas não pode ser Nulo.")
     @Column(name = "quantidadeVagas", nullable = false)
     private Integer quantidadeVagas;
     
+    @NotNull(message = "O campo Curso não pode ser Nulo.")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idCurso", nullable = false)
     private Curso curso;
     
+    @NotNull(message = "O campo Período Letivo não pode ser Nulo.")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idPeriodoLetivo", nullable = false)
     private PeriodoLetivo periodoLetivo;

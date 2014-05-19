@@ -49,13 +49,13 @@ and open the template in the editor.
                     
                     <p:column style="width: 8%" headerText="Horário Início">
                         <h:outputText value="#{turma.horarioInicio}">
-                            <f:convertDateTime pattern="HH:mm" />                
+                            <f:convertDateTime pattern="HH:mm" timeZone="GMT-3"/>                
                         </h:outputText>
                     </p:column>
                     
                     <p:column style="width: 8%" headerText="Horário Fim">
                         <h:outputText value="#{turma.horarioFim}">
-                            <f:convertDateTime pattern="HH:mm" />                
+                            <f:convertDateTime pattern="HH:mm" timeZone="GMT-3"/>                
                         </h:outputText>
                     </p:column>
                     

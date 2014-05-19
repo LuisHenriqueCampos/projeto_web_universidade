@@ -34,11 +34,16 @@ public class TurmaService implements ITurmaService{
 
     @Override
     public String salvar(Turma turma) {
+        TypedQuery<Turma> turmaQuery = turmaDao.getEntityManager()
+                .createQuery("SELECT t FROM Turma t WHERE t.nomeTurma = :nome",Turma.class);
+        turmaQuery.setParameter("nome", turma.getNomeTurma());
         try{
-            if(turma.getIdTurma() != null){
+            if(turma.getIdTurma() != null && turmaQuery.getResultList().isEmpty()){
                 turmaDao.update(turma);
-            }else{
+            }else if(turma.getIdTurma() == null && turmaQuery.getResultList().isEmpty()){
                 turmaDao.save(turma);
+            }else{
+                return "Turma já cadastrada.";
             }
         }catch(Exception ex){
             ex.printStackTrace();

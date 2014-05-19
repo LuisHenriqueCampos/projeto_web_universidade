@@ -20,7 +20,7 @@ public class AlunoService implements IAlunoService{
         TypedQuery<Aluno> alunoQuery = alunoDao.getEntityManager()
                 .createQuery("SELECT a FROM Aluno a ORDER BY a.pessoa.nome",Aluno.class);
         
-        return alunoDao.all(alunoQuery);
+        return alunoQuery.getResultList();
         
     }
 

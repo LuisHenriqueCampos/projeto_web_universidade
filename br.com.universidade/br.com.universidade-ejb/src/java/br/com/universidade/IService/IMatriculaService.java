@@ -6,12 +6,18 @@
 
 package br.com.universidade.IService;
 
+import br.com.universidade.aplicacao.Matricula;
+import java.util.List;
+
 /**
  *
  * @author Luis
  */
 public interface IMatriculaService {
     
-    
+    List<Matricula> listar();
+    String salvar(Matricula matricula);
+    String remover(Integer idMatricula);
+    Matricula obter(Integer id);
     
 }

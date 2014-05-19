@@ -3,6 +3,8 @@ package br.com.universidade.aplicacao;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "curso")
@@ -13,15 +15,19 @@ public class Curso {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Short idCurso;
     
+    @Size(min = 5, max = 45, message = " O campo SCurso deve ter no mínimo 5 e no máximo 45 caracteres ")
+    @NotNull(message = "O campo Curso não pode ser Nulo.")
     @Column(name = "nomeCurso", nullable = false, length = 45)
     private String nomeCurso;
     
+    @NotNull(message = "O campo Carga Horária não pode ser Nulo.")
     @Column(name = "cargaHoraria", nullable = false)
     private Integer cargaHoraria;
     
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "curso", cascade = CascadeType.ALL)
     private List<Turma> turmas;
     
+    @NotNull(message = "É necessário selecionar ao menos 1 matéria.")
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "cursomateria",
             joinColumns = @JoinColumn(name = "idCurso"),

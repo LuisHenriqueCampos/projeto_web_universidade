@@ -14,14 +14,14 @@ and open the template in the editor.
         <br/>
         <p:panel  id="painelCadastro">
             
-            <p:messages/>
+            <p:growl/>
             
             <h:inputHidden value="#{periodoLetivoManagedBean.periodoLetivo.idPeriodoLetivo}"/>
             
             <h:panelGrid columns="2" cellpadding="5">
                 
                 <h:outputLabel value="Período Letivo:*"/>
-                <p:inputText value="#{periodoLetivoManagedBean.periodoLetivo.descricao}"/>
+                <p:inputMask value="#{periodoLetivoManagedBean.periodoLetivo.descricao}" mask="9/9999"/>
                 
                 <h:outputLabel value="Data Inicio:*" /> 
                 <p:calendar locale="pt_BR" navigator="true" pattern="dd/MM/yyyy" 
@@ -35,10 +35,7 @@ and open the template in the editor.
                                  actionListener="#{periodoLetivoManagedBean.salvar()}"
                                  update="painelCadastro,:formTabela:tabela"/>
                 
-                 <p:commandButton value="Novo" icon="ui-icon-plus"
-                                  actionListener="#{periodoLetivoManagedBean.novo()}"
-                                  process="@this"
-                                  update="@form"/>
+                <p:button value="Novo" icon="ui-icon-plus" outcome="index.html"/>
                 
             </h:panelGrid>
             

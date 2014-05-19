@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Objects;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "aluno")
@@ -14,9 +15,11 @@ public class Aluno {
     @Column(name = "idPessoa", insertable = false, updatable = false)
     private Integer idPessoa;
     
+    @Size(max = 100, message = " O campo Email deve ter máximo 100 caracteres ")
     @Column(name = "email", nullable = true, length = 50)
     private String email;
     
+    @Size(max = 100, message = " O campo Nome do Responsável deve ter máximo 100 caracteres ")
     @Column(name = "nomeResponsavel", nullable = false, length = 100)
     private String nomeResponsavel;
     
@@ -24,7 +27,7 @@ public class Aluno {
     @OneToOne(optional = false, cascade = CascadeType.ALL)
     private Pessoa pessoa;
     
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "aluno", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "aluno")
     private List<Matricula> matriculas;
     
     public Aluno(){
@@ -92,5 +95,5 @@ public class Aluno {
         }
         return true;
     }
-    
+   
 }

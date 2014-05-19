@@ -29,9 +29,7 @@ and open the template in the editor.
                              actionListener="#{situacaoMatriculaManagedBean.salvar()}"
                              update="painelCadastro,:formTabela:tabela"/>
                 
-            <p:commandButton value="Novo" icon="ui-icon-plus"
-                             actionListener="#{situacaoMatriculaManagedBean.novo()}"
-                             update="painelCadastro"/>
+            <p:button value="Novo" icon="ui-icon-plus" outcome="index.html"/>
             
         </p:panel>
         

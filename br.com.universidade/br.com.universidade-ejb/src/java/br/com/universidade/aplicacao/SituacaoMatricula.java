@@ -3,6 +3,8 @@ package br.com.universidade.aplicacao;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "situacaomatricula")
@@ -13,7 +15,9 @@ public class SituacaoMatricula {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Short idSituacaoMatricula;
     
-    @Column(name = "descricao", nullable = false, length = 45)
+    @NotNull(message = "O campo Situação Matrícula não pode ser Nulo.")
+    @Size(min = 2, max = 20, message = " O campo Situação Matrícula deve ter no mínimo 2 e no máximo 20 caracteres ")
+    @Column(name = "descricao", nullable = false, length = 20)
     private String descricao;
     
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "situacaoMatricula", cascade = CascadeType.ALL)
