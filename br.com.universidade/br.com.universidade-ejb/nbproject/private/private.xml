@@ -3,8 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Luis/Documents/GitHub/projeto_web_universidade/br.com.universidade/br.com.universidade-ejb/src/java/br/com/universidade/aplicacao/PeriodoLetivo.java</file>
-            <file>file:/C:/Users/Luis/Documents/GitHub/projeto_web_universidade/br.com.universidade/br.com.universidade-ejb/src/java/br/com/universidade/service/PeriodoLetivoService.java</file>
+            <file>file:/C:/Users/Luis/Documents/GitHub/projeto_web_universidade/br.com.universidade/br.com.universidade-ejb/src/java/br/com/universidade/model/GraficoCursoModel.java</file>
+            <file>file:/C:/Users/Luis/Documents/GitHub/projeto_web_universidade/br.com.universidade/br.com.universidade-ejb/src/java/br/com/universidade/service/CursoService.java</file>
+            <file>file:/C:/Users/Luis/Documents/GitHub/projeto_web_universidade/br.com.universidade/br.com.universidade-ejb/src/java/br/com/universidade/IService/ICursoService.java</file>
+            <file>file:/C:/Users/Luis/Documents/GitHub/projeto_web_universidade/br.com.universidade/br.com.universidade-ejb/src/java/br/com/universidade/aplicacao/Matricula.java</file>
         </group>
     </open-files>
 </project-private>

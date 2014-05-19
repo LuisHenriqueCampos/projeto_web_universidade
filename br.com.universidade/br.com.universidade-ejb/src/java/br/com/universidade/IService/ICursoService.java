@@ -7,6 +7,7 @@
 package br.com.universidade.IService;
 
 import br.com.universidade.aplicacao.Curso;
+import br.com.universidade.model.GraficoCursoModel;
 import java.util.List;
 
 /**
@@ -19,5 +20,5 @@ public interface ICursoService {
     String remover(Short idCurso);
     String salvar(Curso curso);
     Curso obter(Short id);
-    
+    List<GraficoCursoModel> consultaGrafico();
 }

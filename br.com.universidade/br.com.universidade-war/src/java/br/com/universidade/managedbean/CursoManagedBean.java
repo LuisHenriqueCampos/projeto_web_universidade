@@ -8,11 +8,13 @@ package br.com.universidade.managedbean;
 
 import br.com.universidade.IService.ICursoService;
 import br.com.universidade.aplicacao.Curso;
+import br.com.universidade.model.GraficoCursoModel;
 import br.com.universidade.util.MenssagemUtil;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
+import org.primefaces.model.chart.PieChartModel;
 
 /**
  *
@@ -58,6 +60,18 @@ public class CursoManagedBean {
         }else{
             MenssagemUtil.addMensagemError(erro);
         }
+    }
+    
+    public PieChartModel gerarGrafico(){
+        PieChartModel pieChartModel =  new PieChartModel();
+        
+        List<GraficoCursoModel> models =
+                cursoService.consultaGrafico();
+        
+        for(GraficoCursoModel model : models){
+            pieChartModel.set(model.getNomeCurso(), model.getQuantidadeMateria());
+        }        
+        return pieChartModel;
     }
     
      public void atualizar(){

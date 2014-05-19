@@ -39,7 +39,7 @@ and open the template in the editor.
         <p:ajaxStatus onstart="statusDialog.show();" onsuccess="statusDialog.hide();"/>  
 
         <p:dialog modal="true" widgetVar="statusDialog" header="Carregando"   
-                  draggable="false" closable="false">  
+                  draggable="false" closable="false" >  
             <p:graphicImage value="/imagens/ajaxloadingbar.gif"/>
         </p:dialog>
         
@@ -49,7 +49,7 @@ and open the template in the editor.
                 
                 <h:outputLink value="#{request.contextPath}/index.html">
                     
-                    <h:graphicImage value="/imagens/java_ee.png" />
+                    <h:graphicImage value="/imagens/logoportal.png" />
                     
                 </h:outputLink>
                 
@@ -72,6 +72,7 @@ and open the template in the editor.
                         <p:submenu label="Visualizar">                         
                             
                             <p:menuitem value="Matéria" url="/materia/index.html"/>
+                            <p:menuitem value="Matérias por Curso" url="/curso/grafico.html"/>
                             
                         </p:submenu>
                         

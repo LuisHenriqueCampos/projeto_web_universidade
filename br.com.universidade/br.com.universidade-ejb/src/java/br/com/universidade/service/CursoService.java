@@ -9,6 +9,7 @@ package br.com.universidade.service;
 import br.com.universidade.IService.ICursoService;
 import br.com.universidade.aplicacao.Curso;
 import br.com.universidade.data.IGenericDAO;
+import br.com.universidade.model.GraficoCursoModel;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -68,6 +69,13 @@ public class CursoService implements ICursoService{
         Curso curso = cursoDao
                 .getEntityManager().find(Curso.class, id);
         return curso;
-    }   
+    }
+    
+    @Override
+    public List<GraficoCursoModel> consultaGrafico(){
+        TypedQuery<GraficoCursoModel> query = cursoDao.getEntityManager()
+                .createQuery("SELECT new br.com.universidade.model.GraficoCursoModel (c.nomeCurso, SIZE(c.materias)) FROM Curso as c",GraficoCursoModel.class);
+        return query.getResultList();
+    }
     
 }

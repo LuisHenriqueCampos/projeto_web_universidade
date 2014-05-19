@@ -46,10 +46,7 @@ and open the template in the editor.
                                  actionListener="#{cursoManagedBean.salvar()}"
                                  update="painelCadastro,:formTabela:tabela"/>
                 
-                 <p:commandButton value="Novo" icon="ui-icon-plus"
-                                  actionListener="#{cursoManagedBean.novo()}"
-                                  process="@this"
-                                  update="@form"/>
+            <p:button value="Novo" icon="ui-icon-plus" outcome="index.html"/>
             
         </p:panel>
         <br/>
